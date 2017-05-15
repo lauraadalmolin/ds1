@@ -1,0 +1,36 @@
+body {
+	text-align: justify;
+	font-size: 14pt;
+	background-color: #EFEFEF;
+}
+p {	
+	text-indent: 1.5cm;
+}
+em {
+	font-style: italic;
+	text-decoration: underline;
+}
+strong {
+	font-weight: bold;
+	text-decoration: underline;
+	text-transform: uppercase;
+
+}
+
+h1 {
+	text-indent: 110px;
+	color: grey;
+	background: url(computador.png) no-repeat 30px center white;
+	border: solid;
+	padding-bottom: 30px;
+	padding-top: 30px;
+	 
+}
+
+h2 {
+	border-bottom: solid;
+	border-width: thin;
+	margin-top: 1cm;
+	padding-bottom: 5px;
+	color: #AA0000;
+}

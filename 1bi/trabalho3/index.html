@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css"/>
+	<script type="text/javascript" src="js/script.js"></script>
+	<meta charset="utf-8">	
+	<title>Gerenciador de Estacionamentos</title>
+
+
+</head>
+<body>
+	<ul class="nav nav-tabs">
+		<li><a role="presentation" class="active" href="index.html">Início</a></li>
+		<li><a role="presentation" href="vagas.php">Situação do Estacionamento</a></li>
+	</ul>
+	<br>
+	<div class="container">
+        <div class="row">
+        	<div class="col-md-12"> 
+        		<div class="panel panel-default">
+	        		<div class="panel-heading">
+						Por favor, preencha o formulário abaixo
+					</div>
+					<div class="panel-body ">
+						<form method="post" action="salva.php" onsubmit="return testa()">
+							<input type="text" class="form-control" name="placa" id="placa" required onkeyup="validaPlaca('placa')" placeholder="Placa do veículo XXX-YYYY"><br>
+							<span class="input-group-addon">
+								<input type="radio" name="registro" value="entrada"> Entrada
+							</span> 
+							<span class="input-group-addon">
+								<input type="radio" name="registro" value="saida"> Saída 
+							</span> <br>
+							<input type="text" class="form-control" name="data" id="data" required onkeyup="validaData('data')" placeholder="Data AAAA-MM-DD"><br>
+							<input type="text" class="form-control" name="hora" id="hora" required onkeyup="validaHora('hora')" placeholder="Hora HH:MM"><br>
+							<input type='submit' value='Enviar'>
+							<p id="mensagem" style="display:none;">Todos os campos devem ser válidos para que o formulário possa ser submetido.</p>
+						</form>
+					</div>
+				</div>
+		
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

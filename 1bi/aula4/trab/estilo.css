@@ -1,0 +1,30 @@
+td {
+	padding: 5px 5px 5px 5px;
+	text-align: center;
+}
+body {
+	font-family: Helvetica;
+	background-color: lavender;
+	text-align: center;
+
+}
+#topo {
+	background-color: #6b4edb;
+	border-radius: 2px;
+	color: white;
+}
+table {
+	position: absolute;
+	border-radius: 2px;
+	left: 25%;
+	color: black;
+
+}
+tr {
+	background-color: white;
+	padding: 5px 5px 5px 5px;
+}
+
+h1 {
+	color: #6b4edb;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Sistema Escolar</title>
+</head>
+<body>
+	<ul>
+		<li><a class="active" href="index.html">In&iacute;cio</a></li>
+		<li><a class="active" href="cadastro_aluno.html">Cadastrar Aluno</a></li>
+		<li><a href="cadastro_disciplina.html">Cadastrar Disciplina</a></li>
+		<li><a href="consulta_aluno.html">Buscar Aluno</a></li>
+		<li><a href="matricula.php">Matricular Aluno</a></li>
+	</ul>
+	<br>
+	<div class='center_align micro_div center'>
+	<h1 class='big_title'>Cadastrar Disciplina</h1>
+		<form method="post" action="salva_cadastro.php">
+			
+			<input type="text" name="nome" placeholder="Nome"><br><br>
+			
+			<input type="number" name="capacidade" placeholder="Capacidade"><br><br>
+			<input style="display: none;" type="number" name="seletor" value='3'><br><br>
+			<input type='submit' value='Enviar'>
+		</form>
+	</div>
+</body>
+</html>

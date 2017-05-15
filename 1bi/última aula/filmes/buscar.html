@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Filmes</title>
+</head>
+<body>
+	<ul>
+		<li><a class="active" href="index.html">Cadastrar Filme</a></li>
+		<li><a href="buscar.html">Buscar Filme</a></li>
+		<li><a href="mostra_todos.php">Mostrar todos os filmes</a></li>
+	</ul>
+	<br>
+	<div class='center_align medium_div center'>
+		<h1 class='big_title'>Busca por Título</h1>
+			<br>
+			<form method="post" action="mostra_nome.php">			
+				<input type="text" name="nome" placeholder="Nome"><br><br>			
+				<input type='submit' value='Enviar'>
+			</form>
+		<br>
+		<hr>
+
+		<h1 class='big_title'>Busca por Código</h1>
+			<br>
+			<form method="post" action="mostra_codigo.php">			
+				<input type="number" name="codigo" placeholder="C&oacute;digo"><br><br>			
+				<input type='submit' value='Enviar'>
+			</form>
+	</div>
+	
+</body>
+</html>
