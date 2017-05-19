@@ -25,11 +25,19 @@
 					$modelo = trim($_POST["modelo"]);
 					$cor = trim($_POST["cor"]);
 
+					if (empty($cor) || empty($marca) || empty($modelo)) {
+						die("<div class='alert alert-danger' role='alert'>Todos os campos são obrigatórios</div>");
+					}
+
 					// echo $placa . " " . $hora . " " . $data . " " . $tipo . " " . $marca . " " . $modelo . " " . $cor;
+					if ($tipo != "") {
+						salva_veiculo($placa, $tipo, $marca, $modelo, $cor);
 
-					salva_veiculo($placa, $tipo, $marca, $modelo, $cor);
+						salva_entrada($placa, $data, $hora);
+					} else {
+						echo "<div class='alert alert-danger' role='alert'>Você precisa selecionar um campo tipo.</div>";
 
-					salva_entrada($placa, $data, $hora);
+					}
 
 					function salva_veiculo($placa, $tipo, $marca, $modelo, $cor) {
 

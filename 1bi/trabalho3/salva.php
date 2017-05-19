@@ -17,6 +17,8 @@
         <div class="row">
         	<div class="col-md-12"> 
 				<?php
+				error_reporting(E_ALL);
+				ini_set('display_errors', 'On');
 
 				$placa = strtoupper(trim($_POST["placa"]));
 				$hora = trim($_POST["hora"]);
@@ -29,10 +31,11 @@
 						salva_entrada($placa, $data, $hora);	
 					} else {
 						// Cadastro completo:
-						echo "<div class='panel panel-default'><div class='panel-heading'>Por favor cadastre o veículo primeiro</div>";
+						echo "<div class='panel panel-default'><div class='panel-heading'>Por favor, cadastre o veículo primeiro:</div>";
 						echo "<div class='panel-body'>";
 						echo 	"<form method='post' action='salva_cadastro_veiculo.php'>";
 						echo 		"<select class='form-control' name='tipo'>";
+						echo 			"<option selected disabled value=''>Tipo de veículo</option>";
 						echo 			"<option value='carro'>Carro</option>";
 						echo 			"<option value='moto'>Moto</option>";
 						echo 			"<option value='camionete'>Camionete</option>";
@@ -76,11 +79,15 @@
 						if ($res != false) {
 							$sql = "UPDATE vagas SET disponivel = FALSE WHERE id_vaga = '$vaga'";
 							$res = pg_query($con, $sql);
+							echo "<div class='alert alert-success' role='alert'>Check-in realizado com sucesso!</div>";
+
+						} else {
+							echo "<div class='alert alert-danger' role='alert'>Aconteceu algum erro ao tentar realizar o check-in, por favor verifique se os dados informados são válidos.</div>";
+
 						}
 						pg_close($con);
-						echo "FUNFOU!!!";
 					} else {
-						echo "O ESTACIONAMENTO TA LOTADO PERDEU!";
+						echo "<div class='alert alert-danger' role='alert'>O carro em questão já está no estacionamento.</div>";
 					}
 				}
 
@@ -100,8 +107,11 @@
 				function salva_saida($placa, $data, $hora) {
 
 					$timestamp = $data . " " . $hora;
+					
+					// validar $timestamp: deve ser maior que a $entrada
 
 					$con = pg_connect("host=localhost user=postgres password=1234 dbname=estacionamento");
+
 
 					$sql = "SELECT placa FROM registros WHERE placa = '$placa'";
 					$res = pg_query($con, $sql);
@@ -120,6 +130,22 @@
 						$vaga = $array["id_vaga"];
 						$entrada = $array["entrada"];
 					}
+
+					
+					$sql = "SELECT EXTRACT (EPOCH FROM '$timestamp'::TIMESTAMP)/3600 - EXTRACT (EPOCH FROM entrada)/3600 as value FROM registros WHERE placa = '$placa' AND saida IS NULL";
+					$res = pg_query($con, $sql);
+					
+					while(($array = pg_fetch_array($res)) !== FALSE) {
+						$value = $array["value"];
+						
+						if ($value < 0) {
+							die("<div class='alert alert-danger' role='alert'>Desculpe, mas você informou uma data de saída menor do que a de entrada.</div>");
+						}
+					}
+
+
+
+				
 					$sql = "UPDATE registros SET saida = '$timestamp' WHERE saida IS NULL AND placa = '$placa'";
 					$res = pg_query($con, $sql);
 
@@ -129,8 +155,6 @@
 						$res = pg_query($con, $sql);
 					}
 
-					// (EXTRACT(EPOCH FROM saida) - EXTRACT(EPOCH FROM entrada))/3600
-					
 					pg_close($con);
 
 					echo "<div class='alert alert-success' role='alert'>Check-out realizado com sucesso!</div>";
@@ -175,7 +199,7 @@
 						$dias = ceil($n/24);
 						return $dias * 25;
 					} else {
-						if ($entrada == 20 && $saida == 8) {
+						if ($entrada >= 20 && $saida <= 8) {
 							return 18;
 						} else {
 							$sql = "SELECT tipo FROM veiculos WHERE placa = '$placa'";
