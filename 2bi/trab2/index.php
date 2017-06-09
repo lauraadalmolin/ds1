@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Aula 2</title>
+	<title>Página Inicial</title>
 </head>
 <body>
 	<form method='post' action='login.php'>
@@ -9,6 +9,5 @@
 		<input type='password' name='senha' placeholder='Senha'><br>
 		<input type='submit'>
 	</form>
-
 </body>
 </html>
