@@ -53,8 +53,6 @@
 				$array[$numero]->transferencia($valor, $array[$conta]);
 			}
 		}
-
-	
 		
 	?>
 	<br>

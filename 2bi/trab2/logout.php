@@ -6,12 +6,13 @@
 <body>
 	<?php
 		session_start();
-		if (!$_SESSION["logado"] == true) {
-			header("location:erro_login.php");
+		if ($_SESSION["logado"] !== true) {
+			header("location:index.php");
 		}
+		//$_SESSION["logado"] = false;
 		session_unset();
 		session_destroy();
-		echo "<a href='index.php'>Voltar</a>";
+		header("location:index.php");
 	?>
 
 </body>

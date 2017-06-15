@@ -28,7 +28,8 @@
 		<div class="row">
 			<div class="col-md-12">
 	<?php
-		session_start();
+
+	session_start();
 
 		include "movimentacaoDAO.php";
 		if (!$_SESSION["logado"] == true) {
@@ -39,25 +40,16 @@
 		$valor = $_POST["valor"];
 		$categoria = $_POST["categoria"];
 		$efetivada = $_POST["efetivada"];
-	
 		$data = trim($_POST["data"]);
 		$comentario = trim($_POST["comentario"]);
 		$id_u = $_SESSION["id"];
+		$id_m = $_POST["id_m"];	
 
-		// validação do formulário
-		valida($tipo, $categoria, $efetivada, $data, $valor);
+		edita($id_u, $id_m, $comentario, $data, $efetivada, $categoria, $valor, $tipo);
 
-		// salva
-		$res = salva_movimentacao($tipo, $categoria, $efetivada, $data, $comentario, $id_u, $valor);
+		//header("location:lista_movimentacoes.php");
 
-		// mostra mensagem de sucesso ou de fracasso:
-		if ($res) {
-			echo "<div class='alert alert-success' role='alert'>A nova movimentação foi salva com sucesso!</div>";
-		} else {
-			echo "<div class='alert alert-danger' role='alert'>Não foi possível salvar a movimentação.</div>";
-		}
 
-		// funções:
 		function valida ($tipo, $categoria, $efetivada, $data, $valor) {
 			if (empty($tipo) || empty($categoria) || empty($efetivada) || empty($data)) {
 			die("<div class='alert alert-danger' role='alert'>Todos os campos são obrigatórios, com excessão do comentário</div><a href='form_movimentacao.php'>Voltar</a>");
@@ -65,15 +57,15 @@
 			if (!preg_match("/[0-9]{4}-[0-9]{2}-[0-9]{2}/", $data)) {
 				die("<div class='alert alert-danger' role='alert'>A data não respeita o formato pedido: AAAA-MM-DD</div><a href='form_movimentacao.php'>Voltar</a>");
 			}
-			if (!preg_match("/[0-9]+[.]{0,1}/", $valor)) {
-				die("<div class='alert alert-danger' role='alert'>O valor deve ser informado com . ao invés de vírgula.</div><a href='form_movimentacao.php'>Voltar</a>");
-			}
-		}	
+		}
+
 
 	?>
+
 			</div>
 		</div>
 	</div>
 
 </body>
 </html>
+

@@ -1,29 +1,26 @@
+CREATE TYPE tipos AS ENUM ('receita', 'despesa');
+
+CREATE TYPE categorias AS ENUM ('alimentação', 'supermercado', 'gasolina', 'roupas', 'remédios', 'outros');
+
 CREATE TABLE usuarios (
 	id SERIAL NOT NULL PRIMARY KEY, 
 	login VARCHAR(50), 
 	senha VARCHAR(8),
-	saldo INTEGER NOT NULL
+	saldo REAL NOT NULL
 );
 
-INSERT INTO usuarios (login, senha, saldo) VALUES ('lauraadalmolin', 1234, 0);
-
-DROP TABLE usuarios;
-
 CREATE TABLE movimentacoes (
-	id_t INTEGER NOT NULL REFERENCES tipos(id_t),
-	id_c INTEGER NOT NULL REFERENCES categorias(id_C),
+	id_m SERIAL NOT NULL PRIMARY KEY,
+	tipo tipos,
+	valor REAL,
+	categoria categorias,
 	data DATE,
 	efetivada BOOLEAN,
 	comentario VARCHAR(500),
 	id_u INTEGER NOT NULL REFERENCES usuarios(id)
 );
 
-CREATE TABLE tipos (
-	id_t SERIAL NOT NULL PRIMARY KEY,
-	nome VARCHAR(7)
-);
 
-CREATE TABLE categorias (
-	id_c SERIAL NOT NULL PRIMARY KEY,
-	nome VARCHAR(12)
-);
+INSERT INTO usuarios (login, senha, saldo) VALUES ('lauraadalmolin', 1234, 0);
+
+--DROP TABLE usuarios;

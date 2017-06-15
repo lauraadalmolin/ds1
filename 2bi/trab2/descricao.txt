@@ -1,0 +1,34 @@
+Você deve implementar um sistema web em PHP, que permita ao usuário controlar suas
+movimentações financeiras mensais. O sistema deve apresentar as seguintes funcionalidades:
+
+OK - Login: Deve ser implementado Login e Logout, utilizando sessões (session). O usuário deve
+fornecer um username e senha.
+
+OK - Registro da Movimentação: O usuário deve registrar uma movimentação, que pode ser do tipo
+receita ou despesa, sendo que cada movimentação tem um valor, uma categoria (ex:
+Alimentação, Supermercado, Gasolina, etc). Além disso deve ser definida uma data para a
+movimentação e se ela está efetivada ou não. Além disso deve ser possível o usuário
+acrescentar comentário sobre a movimentação.
+
+- Edição de Movimentação: A Movimentação pode ser editada. Todos os campos que foram
+definidos na sua criação podem ser modificados.
+
+- Exclusão de Movimentação: As movimentações podem ser excluídas.
+
+- Visualização de Despesas por Mês: Após fazer o login o sistema deve mostrar uma listagem
+com todas as movimentações do mês corrente. Deve ser possível visualizar as movimentações
+de um mês escolhido com o saldo do mês em questão.
+
+Considerações
+
+OK - As categorias das movimentações devem estar disponíveis em um campo select.
+OK - Deve haver um campo radio para definir se é uma receita ou despesa.
+OK - É necessário fazer a validação dos formulários, em php.
+OK - Deve-se evitar que uma página seja acessada direto pela url, sem que o login esteja feito. Isto
+pode ser feito verificando se existe uma sessão aberta.
+- O sistema deve fornecer o saldo do mês um campo na página que mostra as movimentações do
+mês. Por exemplo, sempre que uma movimentação for registrada, o saldo total deve refletir a inserção seja
+ela de receita ou despesa.
+OK - Você deve criar o banco de dados.
+- Você deve usar CSS.
+- O trabalho deverá ser desenvolvido nas aulas dos dias 9/6 e 16/6 (apresentação).
