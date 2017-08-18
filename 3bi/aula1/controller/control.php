@@ -16,6 +16,5 @@ ini_set('display_errors', 1);
 
 	include_once "../view/result.php";
 
-	#header('Location: http://localhost/ds1/3bi/aula1/view/result.php');
 
  ?>
