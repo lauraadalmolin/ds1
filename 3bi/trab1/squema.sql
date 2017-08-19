@@ -13,7 +13,7 @@ CREATE TABLE veiculos (
 
 CREATE TABLE vagas (
 	codigo VARCHAR(5) PRIMARY KEY,
-	disponivel BOOLEAN	
+	disponivel BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE funcionarios (
