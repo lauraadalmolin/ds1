@@ -1,6 +1,14 @@
 <html>
-	<link rel="stylesheet" href="view/css/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../view/css/bootstrap/css/bootstrap.min.css"/>
 	<script type="text/javascript" src="js/script.js"></script>
+
+<body>
+	<ul class="nav nav-tabs">
+		<li><a role="presentation" class="active" href="index.php">Início</a></li>
+	</ul>
+	<br>
+	<div class="container">
+        <div class="row">
 
 <?php
 
@@ -17,15 +25,18 @@
 	$senha = $_POST['senha'];
 	
 	if (empty($login) || empty($senha)) {
-		die("<p class='alert alert-warning'>Você deve preencher todos os campos.</p><a href='index.php'>Voltar</a>");
+		die("<p class='alert alert-warning'>Você deve preencher todos os campos.</p><a href='../index.php'>Voltar</a>");
 	}
 	if (!(preg_match("/[a-zA-Z]{1,50}/", $login))) {
-		die("<p class='alert alert-warning'>Somente letras e espaços em branco são permitidos no login. O login não pode apresentar mais de 40 caracteres.</p><a href='index.php'>Voltar</a>");
+		die("<p class='alert alert-warning'>Somente letras e espaços em branco são permitidos no login. O login não pode apresentar mais de 40 caracteres.</p><a href='../index.php'>Voltar</a>");
 	}
 	if (!preg_match("/[0-9]{4,8}/", $senha)) {
-		die("<p class='alert alert-warning'>A senha deve apresentar apenas números e ter no mínimo 4 e no máximo 8 caracteres.</p><a href='index.php'>Voltar</a>");
+		die("<p class='alert alert-warning'>A senha deve apresentar apenas números e ter no mínimo 4 e no máximo 8 caracteres.</p><a href='../index.php'>Voltar</a>");
 	}	
-	
+
+	// faz o md5 da senha
+	$senha = md5($senha);
+
 	$funcionarioDAO = new FuncionarioDAO();
 
 	$retorno = $funcionarioDAO->testaDados($login, $senha);
@@ -37,7 +48,7 @@
 		$_SESSION["senha"] = $senha;
 		# busca no banco 
 		$gerente = $funcionarioDAO->isGerente($login);
-		if ($gerente == true) {
+		if ($gerente == 't') {
 			$_SESSION["admin"] = true;
 		} else {
 			$_SESSION["admin"] = false;	
@@ -49,11 +60,14 @@
 	} else {
 		echo "<div class='container'><div class='row'><div class='col-md-12'>";
 		echo "<p class='alert alert-danger'>Login não efetuado</p>";
-		echo "<button class='btn btn-default'><a href='index.php'>Voltar</a></button>";
+		echo "<button class='btn btn-default'><a href='../index.php'>Voltar</a></button>";
 		echo "</div></div></div>";
 	}
 
 
 
 ?>	
+		</div>
+	</div>
+</body>
 </html>

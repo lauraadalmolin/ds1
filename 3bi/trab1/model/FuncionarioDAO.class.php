@@ -35,6 +35,23 @@ class FuncionarioDAO {
 
 	}
 
+	function getFuncionario($id) {
+
+		$sql = "SELECT * FROM funcionarios WHERE id = $id";
+
+		$retorno = pg_query($this->con, $sql);
+
+		while ($row = pg_fetch_array($retorno)) {
+			$id = $row["id"];
+			$nome = $row["nome"];
+			$login = $row["login"];
+			$senha = $row["senha"];
+			$gerente = $row["gerente"];
+		}
+
+		$funcionario = new Funcionario($id, $nome, $login, $senha, $gerente);
+		return $funcionario;
+	}
 }
 
 

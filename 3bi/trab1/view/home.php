@@ -20,8 +20,15 @@
 	?>
 	<ul class="nav nav-tabs">
 		<li><a role="presentation" class="active" href="home.php">Início</a></li>
-		<li><a role="presentation" href="vagas.php">Situação do Estacionamento</a></li>
+		<li><a role="presentation" href="../controller/estacionamento.php">Situação do Estacionamento</a></li>
+		<?php
+			if($_SESSION["admin"] == true) {
+				echo "<li><a role='presentation' href='../controller/altera_precos.php'>Alterar Preços</a></li>";
+			}
+
+		?>
 		<li><a role="presentation" href="../controller/logout.php">Logout</a></li>
+		
 	</ul>
 	<br>
 	<div class="container">
@@ -35,13 +42,13 @@
 						Por favor, preencha o formulário abaixo:
 					</div>
 					<div class="panel-body ">
-						<form method="post" action="salva.php" onsubmit="return testa()">
+						<form method="post" action="../controller/salva.php" onsubmit="return testa()">
 							<input type="text" class="form-control" name="placa" id="placa" required onkeyup="validaPlaca('placa')" placeholder="Placa do veículo (XXX-YYYY)"><br>
 							<span class="input-group-addon">
-								<input type="radio" name="registro" value="entrada"> Entrada
+								<input type="radio" name="entrada_saida" value="entrada"> Entrada
 							</span> 
 							<span class="input-group-addon">
-								<input type="radio" name="registro" value="saida"> Saída 
+								<input type="radio" name="entrada_saida" value="saida"> Saída 
 							</span> <br>
 							<input type="text" class="form-control" name="data" id="data" required onkeyup="validaData('data')" placeholder="Data de entrada ou saída (AAAA-MM-DD)"><br>
 							<input type="text" class="form-control" name="hora" id="hora" required onkeyup="validaHora('hora')" placeholder="Hora de entrada ou saída (HH:MM)"><br>

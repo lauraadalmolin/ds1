@@ -1,27 +1,38 @@
 <?php
 	class Registro {
 		
-		private $placa;	
+		private $vaga;	
 		private $veiculo;
+		private $funcionario;
 		private $horaEntrada;
 		private $dataEntrada;
 		private $dataSaida;
 		private $horaSaida;
 		
-		function __construct($placa, $veiculo, $horaEntrada, $dataEntrada, $dataSaida, $horaSaida) {
-			$this->placa = $placa;
+		function __construct($funcionario, $vaga, $veiculo, $horaEntrada, $dataEntrada, $dataSaida, $horaSaida) {
+			$this->funcionario = $funcionario;
+			$this->vaga = $vaga;
 			$this->veiculo = $veiculo;
-			$this->horaEntrada = $dataEntrada;
+			$this->horaEntrada = $horaEntrada;
+			$this->dataEntrada = $dataEntrada;
 			$this->dataSaida = $dataSaida;
 			$this->horaSaida = $horaSaida;
 		}
 
-		function getPlaca() {
-			return $this->placa;
+		function getFuncionario() {
+			return $this->funcionario;
 		}
 
-		function setPlaca($placa) {
-			$this->placa = $placa;
+		function setFuncionario($funcionario) {
+			$this->funcionario = $funcionario;
+		}
+
+		function getVaga() {
+			return $this->vaga;
+		}
+
+		function setVaga($vaga) {
+			$this->vaga = $vaga;
 		}
 
 		function getVeiculo() {
@@ -40,7 +51,7 @@
 			$this->horaEntrada = $horaEntrada;
 		}
 
-		function getDataEntrada($dataEntrada) {
+		function getDataEntrada() {
 			return $this->dataEntrada;
 		}
 
@@ -56,11 +67,11 @@
 			$this->horaSaida = $horaSaida;
 		}
 
-		function getDataSaida($dataSaida) {
+		function getDataSaida() {
 			return $this->dataSaida;
 		}
 
-		function setDataEntrada($dataSaida) {
+		function setDataSaida($dataSaida) {
 			$this->dataSaida = $dataSaida;
 		}
 

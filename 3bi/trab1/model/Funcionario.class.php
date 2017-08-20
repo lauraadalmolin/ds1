@@ -7,43 +7,52 @@
 		private $senha;
 		private $gerente;
 			
-		function __construct($codigo, $modelo, $ano, $preco, $cor) {
-			$this->placa = $placa;
-			$this->marca = $marca;
-			$this->modelo = $modelo;
-			$this->cor = $cor;
+		function __construct($id, $nome, $login, $senha, $gerente) {
+			$this->id = $id;
+			$this->nome = $nome;
+			$this->login = $login;
+			$this->senha = $senha;
+			$this->gerente = $gerente;
 		}
 		
-		function getPlaca() {
-			return $this->placa;
+		function getId() {
+			return $this->id;
 		}
 		
-		function setPlaca($placa) {
-			$this->placa = $placa;
+		function setId($id) {
+			$this->id = $id;
 		}
 
-		function getMarca() {
-			return $this->marca; 
+		function getNome() {
+			return $this->nome; 
 		}
 
-		function setMarca($marca) {
-			$this->marca = $marca;
+		function setNome($nome) {
+			$this->nome = $nome;
 		}
 		
-		function getModelo() {
-			return $this->modelo;
+		function getLogin() {
+			return $this->login;
 		}
 
-		function setModelo($modelo) {
-			$this->modelo = $modelo;
+		function setLogin($login) {
+			$this->login = $login;
 		}	
 
-		function getCor() {
-			return $this->cor;
+		function getSenha() {
+			return $this->senha;
 		}
 
-		function setCor($cor) {
-			$this->cor = $cor;
+		function setSenha($senha) {
+			$this->senha = $senha;
+		}
+
+		function getGerente() {
+			return $this->gerente;
+		}
+
+		function setGerente($gerente) {
+			$this->gerente = $gerente;
 		}
 
 	}

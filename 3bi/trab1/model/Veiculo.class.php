@@ -6,13 +6,13 @@
 		private $modelo;
 		private $cor;
 		
-		function __construct($codigo, $modelo, $ano, $preco, $cor) {
+		function __construct($placa, $marca, $modelo, $cor) {
 			$this->placa = $placa;
 			$this->marca = $marca;
 			$this->modelo = $modelo;
 			$this->cor = $cor;
 		}
-		
+
 		function getPlaca() {
 			return $this->placa;
 		}

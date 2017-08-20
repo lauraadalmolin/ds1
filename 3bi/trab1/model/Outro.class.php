@@ -4,8 +4,19 @@
 
 		class Outro extends Veiculo {
 
-			function __construct($codigo, $modelo, $ano, $preco, $cor) {
-				parent::__construct($codigo, $modelo, $ano, $preco, $cor);
+			private $tipo;
+
+			function __construct($placa, $marca, $modelo, $cor, $tipo) {
+				parent::__construct($placa, $marca, $modelo, $cor);	
+				$this->setTipo($tipo);
+			}
+			
+			function setTipo($tipo) {
+				$this->tipo = $tipo;
+			}
+
+			function getTipo() {
+				return $this->tipo;
 			}
 		
 		}

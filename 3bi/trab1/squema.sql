@@ -12,6 +12,7 @@ CREATE TABLE veiculos (
 );
 
 CREATE TABLE vagas (
+	id_vaga SERIAL,
 	codigo VARCHAR(5) PRIMARY KEY,
 	disponivel BOOLEAN DEFAULT TRUE
 );
@@ -20,7 +21,7 @@ CREATE TABLE funcionarios (
 	id SERIAL NOT NULL PRIMARY KEY,
 	nome VARCHAR(30),
 	login VARCHAR(40),
-	senha VARCHAR(8),
+	senha VARCHAR(32),
 	gerente BOOLEAN DEFAULT FALSE	
 );
 
@@ -32,6 +33,16 @@ CREATE TABLE registros (
 	id_funcionario INTEGER REFERENCES funcionarios (id),
 	PRIMARY KEY (entrada, placa)	
 );
+
+CREATE TABLE precos (
+	preco_carro DECIMAL,
+	preco_moto DECIMAL,
+	preco_outro DECIMAL,
+	preco_pernoite DECIMAL,
+	preco_diaria DECIMAL
+);
+
+INSERT INTO precos (preco_carro, preco_moto, preco_outro, preco_pernoite, preco_diaria) VALUES (5, 4, 7, 18, 25);
 
 INSERT INTO tipos (descricao) VALUES ('CARRO')
 INSERT INTO tipos (descricao) VALUES ('MOTO')
@@ -57,14 +68,10 @@ INSERT INTO vagas (codigo) VALUES ('O11');
 INSERT INTO vagas (codigo) VALUES ('O12');
 INSERT INTO vagas (codigo) VALUES ('O13');
 
-INSERT INTO funcionarios (nome, login, senha, gerente) VALUES ('Laura Dalmolin', 'lauraadalmolin', '1234', TRUE);
-INSERT INTO funcionarios (nome, login, senha, gerente) VALUES ('Victor Colares', 'victorhcolares', '1234', FALSE);
-INSERT INTO funcionarios (nome, login, senha, gerente) VALUES ('Laura Gomes', 'lauratgomes', '1234', FALSE);
+INSERT INTO funcionarios (nome, login, senha, gerente) VALUES ('Laura Dalmolin', 'lauraadalmolin', '81dc9bdb52d04dc20036dbd8313ed055', TRUE);
+INSERT INTO funcionarios (nome, login, senha, gerente) VALUES ('Victor Colares', 'victorhcolares', '81dc9bdb52d04dc20036dbd8313ed055', FALSE);
+INSERT INTO funcionarios (nome, login, senha, gerente) VALUES ('Laura Gomes', 'lauratgomes', '81dc9bdb52d04dc20036dbd8313ed055', FALSE);
 
-INSERT INTO registros (entrada, saida, id_vaga, placa, id_funcionario) VALUES ('2017-08-18 15:07', '2017-08-18 16:32', 'M11', 'AAA-0001', 1);
-INSERT INTO registros (entrada, saida, id_vaga, placa, id_funcionario) VALUES ('2017-08-18 15:14', '2017-08-18 16:40', 'C11', 'AAA-0000', 2);
-INSERT INTO registros (entrada, saida, id_vaga, placa, id_funcionario) VALUES ('2017-08-18 15:25', '2017-08-18 16:50', 'O11', 'AAA-0002', 1);
-INSERT INTO registros (entrada, saida, id_vaga, placa, id_funcionario) VALUES ('2017-08-18 15:32', '2017-08-18 16:55', 'O12', 'AAA-0003', 1);
 
 #SELECT v.id_vaga, r.placa, r.saida FROM registros r FULL OUTER JOIN vagas v ON (v.id_vaga = r.id_vaga) WHERE  v.id_vaga IS NOT NULL ORDER  BY r.saida DESC
 #SELECT (EXTRACT(EPOCH FROM '2017-04-17 14:00:00'::TIMESTAMP))/3600 - EXTRACT(EPOCH FROM entrada)/3600 as value FROM registros WHERE placa = 'XXX-7777' AND saida IS NULL

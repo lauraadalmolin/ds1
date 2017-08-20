@@ -10,7 +10,7 @@
 	<?php
 		session_start();
 		if ($_SESSION["logado"] == true) {
-			header("location:index_logado.php");
+			header("location:view/home.php");
 		}
 	?>
 	<ul class="nav nav-tabs">

@@ -181,47 +181,6 @@
 
 				}
 
-				function calcula_preco($entrada, $placa) {
-					$con = pg_connect("host=localhost user=postgres password=postgres dbname=estacionamento");
-
-					$sql = "SELECT (EXTRACT(EPOCH FROM saida) - EXTRACT(EPOCH FROM entrada))/3600 as value, EXTRACT(HOUR FROM entrada) as entrada, EXTRACT(HOUR FROM saida) as saida  FROM registros WHERE placa = '$placa' AND entrada = '$entrada'";
-					$res = pg_query($con, $sql);
-					$n = 0;
-					$entrada = 0;
-					$saida = 0;
-
-					while(($array = pg_fetch_array($res)) !== FALSE) {
-						$n = $array["value"];
-						$entrada = $array["entrada"];
-						$saida = $array["saida"];
-					}
-					if ($n > 12) {						
-						$dias = ceil($n/24);
-						return $dias * 25;
-					} else {
-						if ($entrada >= 20 && $saida <= 8) {
-							return 18;
-						} else {
-							$sql = "SELECT tipo FROM veiculos WHERE placa = '$placa'";
-							$res = pg_query($con, $sql);
-							$tipo = "";
-							while(($array = pg_fetch_array($res)) !== FALSE) {
-								$tipo = $array["tipo"];
-							}
-							if ($tipo == "carro") {
-								return $n * 5;
-							}
-							if ($tipo == "moto") {
-								return $n * 4;
-							}
-							if ($tipo == "camionete") {
-								return $n * 7;
-							}
-						}
-					}
-
-
-				}
 
 				?>
 			</div>
