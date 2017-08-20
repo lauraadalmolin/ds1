@@ -71,6 +71,7 @@ if (strcmp($entrada_saida, "entrada") == 0) {
 		$mensagem = "<div class='alert alert-success' role='alert'>Check-out realizado com sucesso!</div>";
 		$preco = $registroDAO->calculaPreco($registro);
 		$mensagem = $mensagem . "<div class='alert alert-warning' role='alert'>Preço a pagar: R$". $preco ."</div>";
+		$mensagem = $mensagem . "<div class='alert alert-info' role='alert'> <p>Informações:</p><p>Placa do Veículo: ".$registro->getVeiculo()->getPlaca()."</p><p>Hora entrada: ". $registro->getDataEntrada()." | ".$registro->getHoraEntrada()."</p><p>Hora Saída: ". $registro->getDataSaida()." | ".$registro->getHoraSaida()."</p></div>";
 	}
 	if ($retorno == 3) {
 		$mensagem = "<div class='alert alert-danger' role='alert'>Desculpe, mas não foi encontrado nenhum carro com a placa informada.</div>";

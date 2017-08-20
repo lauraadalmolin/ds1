@@ -17,6 +17,9 @@
 		if (!$_SESSION["logado"] == true) {
 			header("location:../index.php");
 		}
+		if ($_SESSION["admin"] != true) {
+			header("location:../view/home.php");
+		}
 	?>
 	<ul class="nav nav-tabs">
 		<li><a role="presentation" class="active" href="home.php">Início</a></li>
@@ -38,7 +41,7 @@
 						Alteração de preços
 					</div>
 					<div class='panel-body'>
-					 	<form method='post' action='salva_cadastro_veiculo.php'>
+					 	<form method='post' action='salva_alteracao.php'>
 					 		Preço por hora para carros:<input class='form-control' type='number' name='preco_carro' required value=<?php echo $preco->getPrecoCarro();?>><br>
 							Preço por hora para motos:<input class='form-control' type='number' name='preco_moto' required value=<?php echo $preco->getPrecoMoto();?>><br>
 							Preço por hora para outros:<input class='form-control' type='number' name='preco_outro' required value=<?php echo $preco->getPrecoOutro();?>><br>

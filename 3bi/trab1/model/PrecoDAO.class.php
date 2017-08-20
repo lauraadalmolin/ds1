@@ -16,7 +16,6 @@ class PrecoDAO {
 		$retorno = pg_query($this->con, $sql);
 
 		while ($row = pg_fetch_array($retorno)) {
-			echo "oi";
 			$preco_carro = $row["preco_carro"];
 			$preco_moto = $row["preco_moto"];
 			$preco_outro = $row["preco_outro"];
@@ -27,6 +26,21 @@ class PrecoDAO {
 		$preco = new Preco($preco_carro, $preco_moto, $preco_outro, $preco_pernoite, $preco_diaria);
 		
 		return $preco;
+	}
+
+	function alteraPrecos($preco) {
+
+		$preco_carro = $preco->getPrecoCarro();
+		$preco_moto = $preco->getPrecoMoto();
+		$preco_outro = $preco->getPrecoOutro();
+		$preco_pernoite = $preco->getPrecoPernoite();
+		$preco_diaria = $preco->getPrecoDiaria();
+
+
+		$sql = "UPDATE precos SET preco_carro = $preco_carro, preco_moto = $preco_moto, preco_outro = $preco_outro, preco_pernoite = $preco_pernoite, preco_diaria = $preco_diaria";
+
+		$res = pg_query($this->con, $sql);
+
 	}
 
 }

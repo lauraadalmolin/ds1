@@ -26,9 +26,13 @@
 
 			while(($array = pg_fetch_array($res)) !== FALSE) {
 				$vaga = $vagaDAO->getVaga($array["id_vaga"]);
+				$vet = explode(" ", $array["entrada"]);
+				$dataEntrada = $vet[0];
+				$horaEntrada = $vet[1];
+				$horaEntrada = substr($horaEntrada, 0, 5);
 			}
 
-			$registro = new Registro($funcionario, $vaga, $veiculo, null, null, null, null);
+			$registro = new Registro($funcionario, $vaga, $veiculo, $horaEntrada, $dataEntrada, null, null);
 			
 			return $registro;
 		
