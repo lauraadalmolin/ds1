@@ -1,0 +1,2 @@
+/etc/apache2/mods-enabled ls
+tem que estar habilitado o rewrite
