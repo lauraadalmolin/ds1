@@ -1,0 +1,17 @@
+1) no config.php alterar o "base_url" para algo tipo "http://localhost:8000/" (caso esteja rodando o servidor)
+
+2) ainda no config.php alterar o "index_page" para ""
+
+3) alterar o database.php
+
+4) alterar no autoload.php o 'libraries' para "array('database')"
+
+6) copiar a pasta "pt-BR" de algum lugar e colar na pasta 'language'
+
+7) mude no config.php o campo 'language' para 'pt-BR'
+
+8) no arquivo "routes.php" mude o "default_controller" (opcional[eu acho])
+
+9) ser feliz
+
+10) beber mta água
